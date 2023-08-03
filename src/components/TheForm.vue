@@ -97,7 +97,7 @@
     </div>
     
     <div class="form-control">
-      <RatingControl />
+      <RatingControl v-model="rating" />
     </div>
 
     <div class="form-control">
@@ -127,6 +127,7 @@
         how: null,
         confirm: false,
         usernameValidity: 'pending',
+        rating: null,
       }
     },
     
@@ -146,6 +147,9 @@
 
         console.log('Radiobutton: ', this.how);
         this.how = null;
+
+        console.log('Rating: ', this.rating);
+        this.rating = null;
 
         console.log('Confirm: ', this.confirm);
         this.confirm = false;

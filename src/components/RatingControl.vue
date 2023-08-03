@@ -3,7 +3,7 @@
     <li
       v-for="item in ratingButtons"
       :key="item"
-      :class="{ active: activeOption === item }"
+      :class="{ active: modelValue === item }"
     >
       <button
         @click="activate(item)"
@@ -16,17 +16,25 @@
 <script>
   export default {
     name: 'RatingControl',
+    props: ['modelValue'],
+    emits: ['update:modelValue'],
 
     data() {
       return {
-        activeOption: null,
+        // activeOption: this.modelValue,
         ratingButtons: ['Poor', 'Average', 'Great'],
       }
     },
 
+    // computed: {
+    //   activeOption() {
+    //     return this.modelValue;
+    //   }
+    // },
+
     methods: {
       activate(option) {
-        this.activeOption = option;
+        this.$emit('update:modelValue', option);
       },
     },
   }
