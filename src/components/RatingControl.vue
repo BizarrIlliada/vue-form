@@ -3,7 +3,7 @@
     <li
       v-for="item in ratingButtons"
       :key="item"
-      :class="{ active: modelValue === item }"
+      :class="{ active: modelValue.includes(item) }"
     >
       <button
         @click="activate(item)"
@@ -21,20 +21,21 @@
 
     data() {
       return {
-        // activeOption: this.modelValue,
-        ratingButtons: ['Poor', 'Average', 'Great'],
+        optionsArray: this.modelValue,
+        ratingButtons: ['Extra bed', 'Animals', 'Child'],
       }
     },
 
-    // computed: {
-    //   activeOption() {
-    //     return this.modelValue;
-    //   }
-    // },
-
     methods: {
       activate(option) {
-        this.$emit('update:modelValue', option);
+        if (!this.optionsArray.includes(option)) {
+          this.optionsArray.push(option);
+        } else {
+          const index = this.optionsArray.findIndex(el => option === el );
+          this.optionsArray.splice(index, 1);
+        }
+
+        this.$emit('update:modelValue', this.optionsArray);
       },
     },
   }

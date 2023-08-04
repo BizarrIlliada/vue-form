@@ -127,7 +127,7 @@
         how: null,
         confirm: false,
         usernameValidity: 'pending',
-        rating: null,
+        rating: [],
       }
     },
     
@@ -149,15 +149,13 @@
         this.how = null;
 
         console.log('Rating: ', this.rating);
-        this.rating = null;
+        this.rating = [];
 
         console.log('Confirm: ', this.confirm);
         this.confirm = false;
       },
 
       validateInput() {
-        // const { value } = event.target;
-        // console.log('Value: ', value);
         if (!this.username) {
           this.usernameValidity = 'invalid';
         } else {
